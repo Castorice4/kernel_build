@@ -15,9 +15,9 @@ jobs:
       - name: Build Kernel
         uses: Castorice4/kernel_build_action@main
         with:
-          kernel-url: https://github.com/Castorice4/Xiaomi_Kernel_OpenSource
+          kernel-url: https://github.com/Castorice4/crux-marisa
           kernel-dir: msm-4.14
-          kernel-branch: crux-p-oss
+          kernel-branch: micode
           config: crux_user_defconfig
           arch: arm64
           aosp-gcc: true
