@@ -1,3 +1,4 @@
+# A simple action usage
 name: Build Kernel
 on:
   workflow_dispatch:
@@ -20,17 +21,8 @@ jobs:
           config: crux_user_defconfig
           arch: arm64
           aosp-gcc: true
-          aosp-gcc-version: 4.9  # 明确指定使用 GCC 4.9
-          aosp-clang: false      # 禁用 Clang，只使用 GCC
-          # 移除 aosp-clang-version，因为我们不使用 Clang
+          aosp-clang: true
           android-version: 12
+          aosp-clang-version: r383902b1
           disable-lto: true
           anykernel3: true
-          # 添加额外的补丁步骤
-          before-make: |
-            cd msm-4.14
-            # 修复 DTC 错误
-            sed -i 's/YYLTYPE yylloc;/extern YYLTYPE yylloc;/' scripts/dtc/dtc-lexer.l
-            echo "YYLTYPE yylloc;" >> scripts/dtc/dtc-parser.y
-            # 修复 SELinux 错误（临时方案）
-            sed -i 's/#error New address family defined, please update secclass_map./\/\/ #error New address family defined, please update secclass_map./' security/selinux/include/classmap.h
