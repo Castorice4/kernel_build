@@ -27,3 +27,14 @@ jobs:
           aosp-clang-version: r383902
           disable-lto: true
           anykernel3: true
+          before-make: |
+            cd msm-4.14
+            # 修复 SELinux 错误
+            sed -i 's/#error New address family defined, please update secclass_map./\/\/ #error New address family defined, please update secclass_map./' security/selinux/include/classmap.h
+            # 修复 DTC 错误
+            sed -i 's/YYLTYPE yylloc;/extern YYLTYPE yylloc;/' scripts/dtc/dtc-lexer.l
+            echo "YYLTYPE yylloc;" >> scripts/dtc/dtc-parser.y
+            # 彻底清理编译环境
+            make mrproper
+            cp arch/arm64/configs/crux_user_defconfig .config
+            make oldconfig
