@@ -11,6 +11,11 @@ jobs:
       contents: read
 
     steps:
+      - name: Install required packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y binutils-aarch64-linux-gnu gcc-aarch64-linux-gnu
+          
       - name: Build Kernel
         uses: Castorice4/kernel_build_action@main
         with:
@@ -19,8 +24,11 @@ jobs:
           kernel-branch: crux-p-oss
           config: crux_user_defconfig
           arch: arm64
-          aosp-gcc: true       # 使用 AOSP GCC
+          aosp-gcc: false      # 禁用 AOSP GCC
           aosp-clang: false    # 禁用 Clang
+          # 使用 other-gcc64-url 指定自定义 GCC 工具链
+          other-gcc64-url: "file:///usr"  # 使用系统安装的 GCC
+          other-gcc64-branch: "aarch64-linux-gnu"  # 指定工具链前缀
           android-version: 12
           disable-lto: true
           anykernel3: true
