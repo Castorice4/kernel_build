@@ -15,9 +15,9 @@ jobs:
       - name: Build Kernel
         uses: Castorice4/kernel_build_action@main
         with:
-          kernel-url: https://github.com/Xirudly/6
+          kernel-url: https://github.com/Castorice4/kernel-crux
           kernel-dir: msm-4.14
-          kernel-branch: crux
+          kernel-branch: LunarOrchid
           config: crux_defconfig
           arch: arm64
           aosp-gcc: true
