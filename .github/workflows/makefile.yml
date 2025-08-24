@@ -15,9 +15,9 @@ jobs:
       - name: Build Kernel
         uses: Castorice4/kernel_build_action@main
         with:
-          kernel-url: https://github.com/jzc233/crux-marisa
+          kernel-url: https://github.com/Xirudly/6
           kernel-dir: msm-4.14
-          kernel-branch: dynamic
+          kernel-branch: crux
           config: crux_defconfig
           arch: arm64
           aosp-gcc: true
