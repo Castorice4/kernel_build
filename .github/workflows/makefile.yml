@@ -15,9 +15,9 @@ jobs:
       - name: Build Kernel
         uses: Castorice4/kernel_build_action@main
         with:
-          kernel-url: https://github.com/Castorice4/kernel-crux
+          kernel-url: https://github.com/jzc233/crux-marisa
           kernel-dir: msm-4.14
-          kernel-branch: SakuraPetals
+          kernel-branch: dynamic
           config: crux_defconfig
           arch: arm64
           aosp-gcc: true
